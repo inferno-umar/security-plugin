@@ -1,0 +1,5 @@
+plugins.security.audit.type: internal_opensearch
+plugins.security.audit.config.index: "myownindex"
+plugins.security.audit.config.type: "auditevents"
+plugins.security.audit.threadpool.size: 5
+plugins.security.audit.threadpool.max_queue_len: 200000

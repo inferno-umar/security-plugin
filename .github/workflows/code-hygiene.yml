@@ -1,0 +1,62 @@
+name: Code Hygiene
+
+on: [push, pull_request]
+
+jobs:
+  linelint:
+    runs-on: ubuntu-latest
+    name: Check if all files end in newline
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Linelint
+        uses: fernandrone/linelint@0.0.6
+
+  spotless:
+    runs-on: ubuntu-latest
+    name: Spotless scan
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin # Temurin is a distribution of adoptium
+          java-version: 17
+
+      - uses: gradle/gradle-build-action@v3
+        with:
+          cache-disabled: true
+          arguments: spotlessCheck
+
+  checkstyle:
+    runs-on: ubuntu-latest
+    name: Checkstyle scan
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin # Temurin is a distribution of adoptium
+          java-version: 11
+
+      - uses: gradle/gradle-build-action@v3
+        with:
+          cache-disabled: true
+          arguments: checkstyleMain checkstyleTest checkstyleIntegrationTest
+
+  spotbugs:
+    runs-on: ubuntu-latest
+    name: Spotbugs scan
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin # Temurin is a distribution of adoptium
+          java-version: 11
+
+      - uses: gradle/gradle-build-action@v3
+        with:
+          cache-disabled: true
+          arguments: spotbugsMain

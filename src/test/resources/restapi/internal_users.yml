@@ -1,0 +1,135 @@
+---
+_meta:
+  type: "internalusers"
+  config_version: 2
+q:
+  hash: "$2a$12$Ioo1uXmH.Nq/lS5dUVBEsePSmZ5pSIpVO/xKHaquU/Jvq97I7nAgG"
+  reserved: false
+  hidden: true
+  backend_roles: []
+  attributes: {}
+  description: "Migrated from v6"
+other:
+  hash: "someotherhash"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  attributes: {}
+  description: "Migrated from v6"
+test:
+  hash: "$2a$12$1HqHxm3QTfzwkse7vwzhFOV4gDv787cZ8BwmCwNEyJhn0CZoo8VVu"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  attributes: {}
+  description: "Migrated from v6"
+sarek:
+  hash: "$2a$12$Ioo1uXmH.Nq/lS5dUVBEsePSmZ5pSIpVO/xKHaquU/Jvq97I7nAgG"
+  reserved: true
+  hidden: false
+  backend_roles:
+  - "vulcan"
+  attributes: {}
+  description: "Migrated from v6"
+admin:
+  hash: "$2a$12$VcCDgh2NDk07JGN0rjGbM.Ad41qVR/YFJcgHp0UGns5JDymv..TOG"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  attributes: {}
+  description: "Migrated from v6"
+worf:
+  hash: "$2a$12$A41IxPXV1/Dx46C6i1ufGubv.p3qYX7xVcY46q33sylYbIqQVwTMu"
+  reserved: false
+  hidden: false
+  backend_roles:
+  - "klingon"
+  attributes: {}
+  description: "Migrated from v6"
+hide:
+  hash: "$2y$12$unbLt6ftTcIofGrFEcfwSOGYvYjUGLUvKWPjDG74KUv6kgUtesQMS"
+  reserved: false
+  hidden: true
+  backend_roles: []
+  attributes: {}
+  description: "Hidden user - password - hide"
+admin_all_access:
+  hash: "$2y$12$ft8tXtxb.dyO/5MrDXHLc.e1o3dktEQJMvR2e.sgVDyD/gR7G9dLS"
+  reserved: false
+  hidden: false
+  backend_roles:
+    - "vulcan"
+  attributes: {}
+  description: "sample user with all_access, used to test whitelisting"
+rest_api_admin_user:
+  hash: "$2y$12$X5ZamIheHYc2bihGTbK66Oe1.1vJ19akH0OFGF7TvI2BhbbED.KcO"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Full Access admin user"
+rest_api_admin_actiongroups:
+  hash: "$2y$12$XE9zXOgyYBBxnzoWMowIsO1w6o6oIc5w3vgwYjdEE44m9MxFZEuR."
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Action groups admin user"
+rest_api_admin_allowlist:
+  hash: "$2y$12$W5AdCO/j08KiDu7EF/1Zf.nkcQM/7s.TtAdN2pRpbDM31xXcIIJUq"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Allow list admin user"
+rest_api_admin_audit:
+  hash: "$2y$12$UEbBqz9S6xuEefbK3LDvge5MwX4V1GvJYzUP8M24ItkfXMXg/NSh6"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Audit admin user"
+rest_api_admin_internalusers:
+  hash: "$2y$12$pUn1a6jdIeR.stkvEqNe5uK3rOY7Dj3uQfE8Cvd2bjNjTQ2HbsBMK"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Internal users admin user"
+rest_api_admin_nodesdn:
+  hash: "$2y$12$xFUIepz0vILRMzMkZMGY1Ow1P1eJo8TJ2oGiaFXaenGrOMsmDnKZS"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API NodesDN admin user"
+rest_api_admin_roles:
+  hash: "$2y$12$BR.CBsElNLj8v2dzpHJ7bOKVLwWKWjKDhlEvBIvAe9b6/m0xWy2Bq"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Roles admin user"
+rest_api_admin_rolesmapping:
+  hash: "$2y$12$WQb7PsnRRr04zxjuZsDwU.F7QEr7W0f/rJLjUNLf50hpoJuTqqnaS"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Roles Mapping admin user"
+rest_api_admin_ssl_info:
+  hash: "$2y$12$irI4k0eKE8z9OXEd1jO4eeQfPV8WRMfttzutAhEeRBWy5XNXOlpr."
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API SSL Certs admin user"
+rest_api_admin_ssl_reloadcerts:
+  hash: "$2y$12$DxNdaBBMvTq5wO5XlnwlTeGSaC7yNoFoJt2N5TVtraopxPnGjMol2"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API SSL Reload Certs admin user"
+rest_api_admin_tenants:
+  hash: "$2y$12$q05T7m7DFtkLLj.MVJ6jjuZkAywG4ZwaNi9fiYn6XCJelN2TUXCy2"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Tenats admin user"
+rest_api_admin_config_update:
+  hash: "$2y$12$capXg1HNP49Vxeb6ijzRnu5BLMUE0ZePq1l3MhF8tjnuxg614uaY6"
+  reserved: false
+  hidden: false
+  backend_roles: []
+  description: "REST API Config update admin user"

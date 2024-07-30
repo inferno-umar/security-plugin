@@ -1,0 +1,64 @@
+name: Plugin Install
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  OPENSEARCH_VERSION: 2.13.0
+  PLUGIN_NAME: opensearch-security
+
+jobs:
+  plugin-install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        jdk: [11, 17, 21]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - id: random-password
+        uses: peternied/random-name@v1
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin # Temurin is a distribution of adoptium
+          java-version: ${{ matrix.jdk }}
+
+      - name: Checkout Branch
+        uses: actions/checkout@v2
+
+      - name: Assemble target plugin
+        uses: gradle/gradle-build-action@v3
+        with:
+          cache-disabled: true
+          arguments: assemble
+
+      - name: Create Setup Script
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          cat > setup.sh <<'EOF'
+          chmod +x  ./opensearch-${{ env.OPENSEARCH_VERSION }}-SNAPSHOT/plugins/${{ env.PLUGIN_NAME }}/tools/install_demo_configuration.sh
+          /bin/bash -c "yes | ./opensearch-${{ env.OPENSEARCH_VERSION }}-SNAPSHOT/plugins/${{ env.PLUGIN_NAME }}/tools/install_demo_configuration.sh -t"
+          EOF
+
+      - name: Create Setup Script
+        if: ${{ runner.os == 'Windows' }}
+        run: |
+          New-Item .\setup.bat -type file
+          Set-Content .\setup.bat -Value "powershell.exe .\opensearch-${{ env.OPENSEARCH_VERSION }}-SNAPSHOT\plugins\${{ env.PLUGIN_NAME }}\tools\install_demo_configuration.bat -i -c -y -t"
+          Get-Content .\setup.bat
+
+      - name: Run Opensearch with A Single Plugin
+        uses: ./.github/actions/start-opensearch-with-one-plugin
+        with:
+          opensearch-version: ${{ env.OPENSEARCH_VERSION }}
+          plugin-name: ${{ env.PLUGIN_NAME }}
+          setup-script-name: setup
+          admin-password: ${{ steps.random-password.outputs.generated_name }}
+
+      - name: Run sanity tests
+        uses: gradle/gradle-build-action@v3
+        with:
+          cache-disabled: true
+          arguments: integTestRemote -Dtests.rest.cluster=localhost:9200 -Dtests.cluster=localhost:9200 -Dtests.clustername="opensearch" -Dhttps=true -Duser=admin -Dpassword=${{ steps.random-password.outputs.generated_name }} -i
